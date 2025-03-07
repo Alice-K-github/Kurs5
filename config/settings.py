@@ -86,11 +86,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'kurs5',
-        'USER': 'postgres',
-        'PASSWORD': 'AlisaKa145',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.getenv('POSTGRES_NAME'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'PORT': os.getenv('POSTGRES_PORT'),
     }
 }
 
@@ -171,15 +171,15 @@ CORS_ALLOW_ALL_ORIGINS = False
 '''STRIPE_API_KEY = os.getenv('STRIPE_API_KEY')'''
 
 # Настройка Celery
-CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL') # Например, Redis, который по умолчанию работает на порту 6379
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')  # Например, Redis, который по умолчанию работает на порту 6379
 
-CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND') # URL-адрес брокера результатов, также Redis
+CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')  # URL-адрес брокера результатов, также Redis
 
-CELERY_TIMEZONE = "Australia/Tasmania" # Часовой пояс для работы Celery
+CELERY_TIMEZONE = "Australia/Tasmania"  # Часовой пояс для работы Celery
 
-CELERY_TASK_TRACK_STARTED = True # Флаг отслеживания выполнения задач
+CELERY_TASK_TRACK_STARTED = True  # Флаг отслеживания выполнения задач
 
-CELERY_TASK_TIME_LIMIT = 30 * 60 # Максимальное время на выполнение задачи
+CELERY_TASK_TIME_LIMIT = 30 * 60  # Максимальное время на выполнение задачи
 
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
@@ -188,7 +188,7 @@ CELERY_BEAT_SCHEDULE = {
     },
 }
 
-#Подключение кэша (Redis)
+  # Подключение кэша (Redis)
 CACHE_ENABLED = True
 if CACHE_ENABLED:
     CACHES = {

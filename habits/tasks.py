@@ -4,7 +4,7 @@ from users.services import send_telegram_message
 
 
 @shared_task
-def my_task(request, Habit_id):
+def my_task(Habit_id):
     # Отправка уведомлений
     habit = Habit.objects.get(id=Habit_id)
     user = habit.owner
