@@ -12,6 +12,6 @@ urlpatterns = [
                 path('register/', CustomUserCreateAPIView.as_view(), name='register'),
                 path('<int:pk>/', UserRetriveAPIView.as_view(), name='register'),
 
-                path('token/', TokenObtainPairView.as_view(permission_classes=[AllowAny]), name='token_obtain_pair'),
+                path('token/', TokenObtainPairView.as_view(permission_classes=[AllowAny]), name='token'),
                 path('token/refresh/', TokenRefreshView.as_view(permission_classes=[AllowAny]), name='token_refresh'),
         ]
