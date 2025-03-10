@@ -1,15 +1,17 @@
 from django.contrib import admin
-from django.contrib.auth.views import LogoutView, LoginView
-from django.urls import path, include
-from users.views import RegisterView, MyTokenObtainPairView
+from django.urls import path
+from rest_framework.decorators import permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.views import TokenRefreshView, TokenObtainPairView
+from users.views import CustomUserCreateAPIView, UserRetriveAPIView
 
 app_name = 'users'
 
 urlpatterns = [
                 path("admin/", admin.site.urls),
-                path("logout/", LogoutView.as_view(next_page=''), name="logout"),
-                path('login/', LoginView.as_view(), name='login'),
-                path('register/', RegisterView.as_view(), name='register'),
-                path('accounts/', include('django.contrib.auth.urls')),
-                path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+                path('register/', CustomUserCreateAPIView.as_view(), name='register'),
+                path('<int:pk>/', UserRetriveAPIView.as_view(), name='register'),
+
+                path('token/', TokenObtainPairView.as_view(permission_classes=[AllowAny]), name='token_obtain_pair'),
+                path('token/refresh/', TokenRefreshView.as_view(permission_classes=[AllowAny]), name='token_refresh'),
         ]

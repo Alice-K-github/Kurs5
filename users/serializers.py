@@ -7,7 +7,7 @@ from users.models import CustomUser
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['id', 'username', 'email', 'is_staff']
+        fields = ['id', 'username', 'tg_chat_id']
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
