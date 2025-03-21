@@ -43,6 +43,8 @@ services:
     build: .
     container_name: 'celery_app'
     command: celery --app=config worker --loglevel=info
+    ports:
+      - '5672:5672'
     volumes:
       - .:/code
     links:
